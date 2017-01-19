@@ -1,26 +1,15 @@
-import React from 'react';
-import {render} from 'react-dom';
+import React from 'react'
+import {render} from 'react-dom'
+import {Provider} from 'react-redux'
+import configureStore from './store'
+import App from './containers'
 
-
-
-class Game extends React.Component {
-  render() {
-    return (
-      <div className="game">
-        <div className="game-board">
-          <Board />
-        </div>
-        <div className="game-info">
-          <div>{/* status */}</div>
-          <ol>{/* TODO */}</ol>
-        </div>
-      </div>
-    );
-  }
-}
-
+const store = configureStore();
+const rotEl = document.getElementById('root');
 
 render(
-  <Game />,
-  document.getElementById('container')
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  rootEl
 );
