@@ -8,7 +8,11 @@ export default class App extends React.Component {
   render () {
   let timestamp = new Date().toString();
     return (
-      <Mod name='jason' time={timestamp} hoge='hogehoge'/>
+      <Mod
+        name='jason'
+        time={timestamp}
+        hoge='hogehoge'
+      />
     );
   }
 }
