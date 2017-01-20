@@ -1,15 +1,19 @@
-import React from 'react'
-import {render} from 'react-dom'
-import {Provider} from 'react-redux'
-import configureStore from './store'
-import App from './containers'
+import React from 'react';
+import {render} from 'react-dom';
+import Mod from './mod.jsx';
 
-const store = configureStore();
-const rotEl = document.getElementById('root');
+const element = document.getElementById('root');
+
+export default class App extends React.Component {
+  render () {
+  let timestamp = new Date().toString();
+    return (
+      <Mod name='jason' time={timestamp} hoge='hogehoge'/>
+    );
+  }
+}
 
 render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  rootEl
+  <App />,
+  element
 );

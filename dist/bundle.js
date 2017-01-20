@@ -46,7 +46,9 @@
 
 	'use strict';
 
-	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -56,6 +58,10 @@
 
 	var _reactDom = __webpack_require__(32);
 
+	var _mod = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./mod\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	var _mod2 = _interopRequireDefault(_mod);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -64,160 +70,31 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var Square = function (_React$Component) {
-	  _inherits(Square, _React$Component);
+	var element = document.getElementById('root');
 
-	  function Square() {
-	    _classCallCheck(this, Square);
+	var App = function (_React$Component) {
+	  _inherits(App, _React$Component);
 
-	    var _this = _possibleConstructorReturn(this, (Square.__proto__ || Object.getPrototypeOf(Square)).call(this));
+	  function App() {
+	    _classCallCheck(this, App);
 
-	    _this.state = {
-	      value: null
-	    };
-	    return _this;
+	    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
 	  }
 
-	  _createClass(Square, [{
+	  _createClass(App, [{
 	    key: 'render',
 	    value: function render() {
-	      var _this2 = this;
-
-	      return _react2.default.createElement(
-	        'button',
-	        { className: 'square', onClick: function onClick() {
-	            return _this2.props.onClick();
-	          } },
-	        this.state.value
-	      );
+	      return _react2.default.createElement(_mod2.default, null);
 	    }
 	  }]);
 
-	  return Square;
+	  return App;
 	}(_react2.default.Component);
 
-	var Board = function (_React$Component2) {
-	  _inherits(Board, _React$Component2);
+	exports.default = App;
 
-	  function Board() {
-	    _classCallCheck(this, Board);
 
-	    var _this3 = _possibleConstructorReturn(this, (Board.__proto__ || Object.getPrototypeOf(Board)).call(this));
-
-	    _this3.state = {
-	      squares: Array(9).fill(null)
-	    };
-	    return _this3;
-	  }
-
-	  _createClass(Board, [{
-	    key: 'renderSquare',
-	    value: function renderSquare(i) {
-	      var _this4 = this;
-
-	      return _react2.default.createElement(Square, { value: this.state.squares[i], onClick: function onClick() {
-	          return _this4.handleClick(i);
-	        } });
-	    }
-	  }, {
-	    key: 'handleClick',
-	    value: function handleClick(i) {
-	      var squares = this.state.squares.slice();
-	      squares[i] = 'X';
-	      this.setState({ squares: squares });
-	      console.log(squares);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var status = 'Next player: X';
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'status' },
-	          status
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'board-row' },
-	          this.renderSquare(0),
-	          this.renderSquare(1),
-	          this.renderSquare(2)
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'board-row' },
-	          this.renderSquare(3),
-	          this.renderSquare(4),
-	          this.renderSquare(5)
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'board-row' },
-	          this.renderSquare(6),
-	          this.renderSquare(7),
-	          this.renderSquare(8)
-	        )
-	      );
-	    }
-	  }]);
-
-	  return Board;
-	}(_react2.default.Component);
-
-	var Game = function (_React$Component3) {
-	  _inherits(Game, _React$Component3);
-
-	  function Game() {
-	    _classCallCheck(this, Game);
-
-	    return _possibleConstructorReturn(this, (Game.__proto__ || Object.getPrototypeOf(Game)).apply(this, arguments));
-	  }
-
-	  _createClass(Game, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'game' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'game-board' },
-	          _react2.default.createElement(Board, null)
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'game-info' },
-	          _react2.default.createElement('div', null),
-	          _react2.default.createElement('ol', null)
-	        )
-	      );
-	    }
-	  }]);
-
-	  return Game;
-	}(_react2.default.Component);
-
-	// ========================================
-
-	(0, _reactDom.render)(_react2.default.createElement(Game, null), document.getElementById('container'));
-
-	function calculateWinner(squares) {
-	  var lines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
-	  for (var i = 0; i < lines.length; i++) {
-	    var _lines$i = _slicedToArray(lines[i], 3),
-	        a = _lines$i[0],
-	        b = _lines$i[1],
-	        c = _lines$i[2];
-
-	    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-	      return squares[a];
-	    }
-	  }
-	  return null;
-	}
+	(0, _reactDom.render)(_react2.default.createElement(App, null), element);
 
 /***/ },
 /* 1 */
