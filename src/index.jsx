@@ -1,23 +1,19 @@
 import React from 'react';
 import {render} from 'react-dom';
-import Mod from './mod.jsx';
+import {Provider} from 'react-dom';
+import {createStore} from 'redux';
 
+console.log(createStore);
+import App from './containers.js'
+import reducer from './reducers.js'
+
+
+const store = createStore(reducer)
 const element = document.getElementById('root');
 
-export default class App extends React.Component {
-  render () {
-  let timestamp = new Date().toString();
-    return (
-      <Mod
-        name='jason'
-        time={timestamp}
-        hoge='hogehoge'
-      />
-    );
-  }
-}
-
 render(
-  <App />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   element
 );
