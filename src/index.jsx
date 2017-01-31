@@ -24,3 +24,18 @@ store.subscribe(() => {
   // stateを取得
   sotre.getState();
 });
+
+
+/*Actionの定義*/
+
+// Action名の定義
+const SEND = 'SEND';
+
+// Action Creators
+function send(value) {
+  // Action
+  return {
+    type: SEND,
+    value,
+  };
+}
