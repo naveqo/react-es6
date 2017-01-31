@@ -1,17 +1,26 @@
-import React from 'react';
-import {render} from 'react-dom';
-import {Provider} from 'react-redux';
-import {createStore} from 'redux';
+import { createStore } from 'redux';
 
-import App from './containers.js'
-import reducer from './reducers.js'
+/*Storeの実装*/
+
+// 初期Store変数（initialState)の作成
+const initialState = {
+  value: null,
+};
+
+// createStoreメソッドを使ってStoreの作成
+const store = createStore(formReducer, initialState);
 
 
-const store = createStore(reducer)
+/*Storeを使用する*/
 
-render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root');
-);
+//ActionをReducerに伝播
+sotre.dispatch(actionCreators());
+
+//stateの状態を購読。状態に変化があったらリスナーを実行
+store.subscribe(() => {
+
+  // リスナーの情報を各
+
+  // stateを取得
+  sotre.getState();
+});
