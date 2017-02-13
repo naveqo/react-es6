@@ -82,14 +82,14 @@ class FormInput extends React.Component {
     this.myInput.value = '';
     return;
   }
-}
-render() {
-  return (
-    <form>
-      <input type="text" ref={(ref) => (this.myInput = ref)} defaultValue="" />
-      <button onClick={(event) => this.send(event)}>Send</button>
-    </form>
-  );
+  render() {
+    return (
+      <form>
+        <input type="text" ref={(ref) => (this.myInput = ref)} defaultValue="" />
+        <button onClick={(event) => this.send(event)}>Send</button>
+      </form>
+    );
+  }
 }
 FormInput.propTypes = {
   handleClick: React.PropTypes.func.isRequired,
