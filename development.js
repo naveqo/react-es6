@@ -5,7 +5,7 @@ const src  = path.resolve(__dirname, 'src')
 const dist = path.resolve(__dirname, 'dist')
 
 export default {
-  entry: src + '/index.jsx',
+  entry: src + '/test.jsx',
 
   output: {
     path: dist,
@@ -28,8 +28,8 @@ export default {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: src + '/index.html',
-      filename: 'index.html'
+      template: src + '/test.html',
+      filename: 'test.html'
     })
   ]
 }
