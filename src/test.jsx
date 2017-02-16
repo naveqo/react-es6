@@ -3,6 +3,12 @@ import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider, connect } from 'react-redux';
 
+const items = [
+  { name: 'aaa', color: 'black'},
+  { name: 'bbb', color: 'green'},
+  { name: 'ccc', color: 'pink'},
+  { name: 'ddd', color: 'yellow'}
+];
 
 const Hello = ({name,color}) => (
   <div>
@@ -12,8 +18,9 @@ const Hello = ({name,color}) => (
 
 const App = () => (
   <div>
-    <Hello name="World" color="blue" />
-    <Hello name="Ebisu" color="red" />
+    {items.map((item) => (
+      <Hello name={item.name} color={item.color} />
+    ))}
   </div>
 );
 
