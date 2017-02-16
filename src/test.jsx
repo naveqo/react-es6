@@ -16,11 +16,34 @@ const Hello = ({name,color}) => (
   </div>
 );
 
+const MyButton = () => (
+  <div>
+    <button onClick={() => alert('clicked')}>Click Me</button>
+  </div>
+);
+
+
+let textData = '';
+const setTextData = (event) => {
+  textData = event.target.value;
+  if (!isNaN(textData)) {
+    textData = "";
+    console.log(Number.isNaN(textData));
+  } else {
+    textData = textData.toUpperCase();
+  }
+  render();
+};
+const MyBox = () => (
+  <div>
+    <input type="text" value={textData} onChange={setTextData}/>
+  </div>
+);
+
+
 const App = () => (
   <div>
-    {items.map((item) => (
-      <Hello name={item.name} color={item.color} />
-    ))}
+    <MyBox />
   </div>
 );
 
