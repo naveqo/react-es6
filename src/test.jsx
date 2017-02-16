@@ -3,28 +3,17 @@ import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider, connect } from 'react-redux';
 
-const Hello = () => (
-  <div>Hello</div>
-);
 
-const Hoge = () => (
+const Hello = ({name,color}) => (
   <div>
-    <p>HogeHoge</p>
-    <ul>
-      <li>aaaa</li>
-      <li>aaaa</li>
-      <li>aaaa</li>
-      <li>aaaa</li>
-      <li>aaaa</li>
-      <li>aaaa</li>
-    </ul>
+    <p style={{color}}>Hello {name}</p>
   </div>
 );
 
 const App = () => (
   <div>
-    <Hello />
-    <Hoge />
+    <Hello name="World" color="blue" />
+    <Hello name="Ebisu" color="red" />
   </div>
 );
 
