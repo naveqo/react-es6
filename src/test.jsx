@@ -29,23 +29,17 @@ const MyForm = () => (
   </div>
 );
 
-const Hello = ({ name, color}) => (
-  <div>
-    <p style={{color}}>Hello {name}!</p>
-  </div>
-);
-
-const Hello2 = ({ name, color, onDelete }) => (
+const Hello = ({ name, color, onEdit }) => (
   <div>
     <p>
       <span style={{ color }}>Hello {name}!</span>
-      <button onClick={() => onDelete()}>Delete</button>
+      <button onClick={() => onEdit()}>Edit</button>
     </p>
   </div>
 );
 
-const deleteItem = (index) => {
-  items.splice(index, 1);
+const modifyItem = (index) => {
+  console.log(items[index].name);
   render();
 };
 
@@ -53,7 +47,7 @@ const App = () => (
   <div>
     <MyForm />
     {items.map((item, index) => (
-      <Hello2 name={item.name} color={item.color} onDelete={() => deleteItem(index)}/>
+      <Hello name={item.name} color={item.color} onEdit={() => modifyItem(index)}/>
     ))}
   </div>
 );
