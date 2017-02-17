@@ -10,40 +10,51 @@ const items = [
   { name: 'ddd', color: 'yellow'}
 ];
 
-const Hello = ({name,color}) => (
-  <div>
-    <p style={{color}}>Hello {name}</p>
-  </div>
-);
-
-const MyButton = () => (
-  <div>
-    <button onClick={() => alert('clicked')}>Click Me</button>
-  </div>
-);
-
-
-let textData = '';
-const setTextData = (event) => {
-  textData = event.target.value;
-  if (!isNaN(textData)) {
-    textData = "";
-    console.log(Number.isNaN(textData));
-  } else {
-    textData = textData.toUpperCase();
-  }
+let nameData = '';
+const setNameData =(event) => {
+  nameData = event.target.value;
   render();
 };
-const MyBox = () => (
+
+const addData = () => {
+  items.push({ name: nameData, color: 'black'});
+  nameData = '';
+  render();
+};
+
+const MyForm = () => (
   <div>
-    <input type="text" value={textData} onChange={setTextData}/>
+    <input type="text" value={nameData} onChange={setNameData} />
+    <button onClick={addData}>Add Data</button>
   </div>
 );
 
+const Hello = ({ name, color}) => (
+  <div>
+    <p style={{color}}>Hello {name}!</p>
+  </div>
+);
+
+const Hello2 = ({ name, color, onDelete }) => (
+  <div>
+    <p>
+      <span style={{ color }}>Hello {name}!</span>
+      <button onClick={() => onDelete()}>Delete</button>
+    </p>
+  </div>
+);
+
+const deleteItem = (index) => {
+  items.splice(index, 1);
+  render();
+};
 
 const App = () => (
   <div>
-    <MyBox />
+    <MyForm />
+    {items.map((item, index) => (
+      <Hello2 name={item.name} color={item.color} onDelete={() => deleteItem(index)}/>
+    ))}
   </div>
 );
 
