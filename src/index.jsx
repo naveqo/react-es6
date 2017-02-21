@@ -3,33 +3,7 @@ import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider, connect } from 'react-redux';
 
-/*Storeの実装*/
-
-// 初期Store変数（initialState)の作成
-const initialState = {
-  value: null,
-};
-
-// createStoreメソッドを使ってStoreの作成
-const store = createStore(formReducer, initialState);
-
-
-/*Storeを使用する*/
-
-//ActionをReducerに伝播
-sotre.dispatch(actionCreators());
-
-//stateの状態を購読。状態に変化があったらリスナーを実行
-store.subscribe(() => {
-
-  // リスナーの情報を各
-
-  // stateを取得
-  sotre.getState();
-});
-
-
-/*Actionの定義*/
+/* Actionsの実装 */
 
 // Action名の定義
 const SEND = 'SEND';
@@ -43,11 +17,11 @@ function send(value) {
   };
 }
 
-
+/* Reducersの実装 */
 
 function formReducer(state, action) {
   switch (action.type) {
-    case SEND:
+    case 'SEND':
       return Object.assign({}, state, {
         value: action.value,
       });
@@ -56,14 +30,22 @@ function formReducer(state, action) {
   }
 }
 
+/* Storeの実装 */
 
-//View (Container Components)
+const initialState = {
+  value: null,
+};
+const store = createStore(formReducer, initialState);
+
+/* Viewの実装 */
+
+// View (Container Components)
 class FormApp extends React.Component {
   render() {
     return (
       <div>
-        <FormInput handleClick = { this.props.onClick} />
-        <FormDisplay data = { this.props.value} />
+        <FormInput handleClick={this.props.onClick} />
+        <FormDisplay data={this.props.value} />
       </div>
     );
   }
@@ -73,8 +55,7 @@ FormApp.propTypes = {
   value: React.PropTypes.string,
 };
 
-
-//View (Presentational Components)
+// View (Presentational Components)
 class FormInput extends React.Component {
   send(e) {
     e.preventDefault();
@@ -95,7 +76,7 @@ FormInput.propTypes = {
   handleClick: React.PropTypes.func.isRequired,
 };
 
-//View (Presentational Components)
+// View (Presentational Components)
 class FormDisplay extends React.Component {
   render() {
     return (
@@ -106,3 +87,29 @@ class FormDisplay extends React.Component {
 FormDisplay.propTypes = {
   data: React.PropTypes.string,
 };
+
+// Connect to Redux
+function mapStateToProps(state) {
+  return {
+    value: state.value,
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    onClick(value) {
+      dispatch(send(value));
+    },
+  };
+}
+const AppContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FormApp);
+
+// Rendering
+ReactDOM.render(
+  <Provider store={store}>
+    <AppContainer />
+  </Provider>,
+  document.querySelector('.content')
+);
