@@ -40,7 +40,7 @@ const store = createStore(formReducer, initialState);
 /* Viewの実装 */
 
 // View (Container Components)
-class FormApp extends React.Component {
+class FormApp extends React.PrueComponent {
   render() {
     return (
       <div>
@@ -56,18 +56,17 @@ FormApp.propTypes = {
 };
 
 // View (Presentational Components)
-class FormInput extends React.Component {
+class FormInput extends React.PureComponent {
   send(e) {
     e.preventDefault();
     this.props.handleClick(this.myInput.value.trim());
     this.myInput.value = '';
-    return;
   }
   render() {
     return (
       <form>
-        <input type="text" ref={(ref) => (this.myInput = ref)} defaultValue="" />
-        <button onClick={(event) => this.send(event)}>Send</button>
+        <input type="text" ref={ref => (this.myInput = ref)} defaultValue="" />
+        <button onClick={event => this.send(event)}>Send</button>
       </form>
     );
   }
@@ -88,6 +87,10 @@ FormDisplay.propTypes = {
   data: React.PropTypes.string,
 };
 
+FormDisplay.defaultProps = {
+  data: '',
+};
+
 // Connect to Redux
 function mapStateToProps(state) {
   return {
@@ -103,7 +106,7 @@ function mapDispatchToProps(dispatch) {
 }
 const AppContainer = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(FormApp);
 
 // Rendering
@@ -111,5 +114,5 @@ ReactDOM.render(
   <Provider store={store}>
     <AppContainer />
   </Provider>,
-  document.querySelector('.content')
+  document.querySelector('.content'),
 );
