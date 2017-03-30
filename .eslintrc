@@ -1,7 +1,4 @@
 # $ npm install --save-dev eslint-config-airbnb eslint-plugin-import eslint-plugin-react eslint-plugin-jsx-a11y eslint
 {
   "extends": "airbnb"
-    "rules": {
-    "react/jsx-no-bind": 0,
-  }
 }
